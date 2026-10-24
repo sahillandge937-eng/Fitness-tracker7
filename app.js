@@ -716,8 +716,7 @@
       });
     }, 300);
   }
-}); 
-
+});
   authUI();
   if (session && currentUser()) route();
 })();
