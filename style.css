@@ -128,3 +128,59 @@ textarea{resize:vertical;min-height:76px}.field{margin-bottom:12px}.field-row{di
 [hidden] {
   display: none !important;
 }
+
+
+/* PULSE mobile login/register fix */
+@media (max-width: 640px) {
+  html,
+  body {
+    height: auto;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .auth-screen {
+    display: block !important;
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: auto;
+    padding: 16px;
+    overflow: visible;
+  }
+
+  .auth-wrap {
+    display: flex !important;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .auth-hero {
+    display: none;
+  }
+
+  .auth-card {
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  #authScreen input,
+  #authScreen select {
+    min-height: 44px;
+    font-size: 16px !important;
+    pointer-events: auto;
+    touch-action: manipulation;
+  }
+
+  #authScreen .field {
+    margin-bottom: 16px;
+  }
+
+  #authScreen .field-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
