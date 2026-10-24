@@ -707,6 +707,16 @@
 
   // Clean-up legacy/local data if the browser is reusing a prior PULSE page.
   if (!Array.isArray(db.users)) db = defaultDB();
+ document.addEventListener('focusin', function(e) {
+  if (e.target.matches('#authScreen input')) {
+    setTimeout(function() {
+      e.target.scrollIntoView({
+        block: 'center',
+        behavior: 'smooth'
+      });
+    }, 300);
+  }
+}); 
 
   authUI();
   if (session && currentUser()) route();
