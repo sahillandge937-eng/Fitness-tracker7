@@ -700,23 +700,29 @@
     return `${Number(parts[2])}/${Number(parts[1])}`;
   }
 
-  // Keep charts responsive.
-  window.addEventListener('resize',()=>{clearTimeout(window.__pulseResize);window.__pulseResize=setTimeout(()=>route(),180)});
-  window.addEventListener('hashchange',()=>route());
-  $('#menuToggle').addEventListener('click',()=>$('#sidebar').classList.toggle('open'));
+  
+  // Keep charts responsive without closing the mobile keyboard.
+  window.addEventListener('resize', () => {
+    if (!$('#authScreen').hidden) return;
 
-  // Clean-up legacy/local data if the browser is reusing a prior PULSE page.
+    clearTimeout(window.__pulseResize);
+    window.__pulseResize = setTimeout(() => {
+      if ($('#authScreen').hidden && session && currentUser()) {
+        route();
+      }
+    }, 180);
+  });
+
+  window.addEventListener('hashchange', () => route());
+  $('#menuToggle').addEventListener('click', () => $('#sidebar').classList.toggle('open'));
+
+  // Clean-up legacy/local data.
   if (!Array.isArray(db.users)) db = defaultDB();
- document.addEventListener('focusin', function(e) {
-  if (e.target.matches('#authScreen input')) {
-    setTimeout(function() {
-      e.target.scrollIntoView({
-        block: 'center',
-        behavior: 'smooth'
-      });
-    }, 300);
-  }
-});
+
+  authUI();
+  if (session && currentUser()) route();
+})();
+
   authUI();
   if (session && currentUser()) route();
 })();
