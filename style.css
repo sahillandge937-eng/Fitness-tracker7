@@ -184,3 +184,23 @@ textarea{resize:vertical;min-height:76px}.field{margin-bottom:12px}.field-row{di
     grid-template-columns: 1fr 1fr;
   }
 }
+@media (max-width: 640px) {
+  #authScreen {
+    position: relative;
+    transform: none !important;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #authScreen input {
+    position: relative;
+    z-index: 10;
+    font-size: 16px !important;
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  #authScreen .auth-card {
+    transform: none !important;
+  }
+}
